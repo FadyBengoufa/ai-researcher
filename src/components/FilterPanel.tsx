@@ -1,57 +1,62 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Checkbox,
-  FormControlLabel,
   Chip,
-  Button
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useSearch } from '../contexts/SearchContext';
-import { getAvailableAuthors, getAvailablePaperTypes, getAvailableTopics, getAvailableYears } from '../utils/mockData';
+  Button,
+  Autocomplete,
+  TextField,
+  Divider,
+} from "@mui/material";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { useSearch } from "../contexts/SearchContext";
+import {
+  getAvailableAuthors,
+  getAvailablePaperTypes,
+  getAvailableTopics,
+  getAvailableYears,
+} from "../utils/mockData";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const FilterPanel: React.FC = () => {
-  const { filters, setFilters, selectedPapers, clearSelectedPapers } = useSearch();
-  
+  const { filters, setFilters, selectedPapers, clearSelectedPapers } =
+    useSearch();
+
   const availableTopics = getAvailableTopics();
   const availableYears = getAvailableYears();
   const availableAuthors = getAvailableAuthors();
   const availablePaperTypes = getAvailablePaperTypes();
 
-  const handleTopicChange = (topic: string) => {
-    const newTopics = filters.topics.includes(topic)
-      ? filters.topics.filter(t => t !== topic)
-      : [...filters.topics, topic];
-    
-    setFilters({ ...filters, topics: newTopics });
+  const handleTopicChange = (
+    event: React.SyntheticEvent,
+    newValue: string[]
+  ) => {
+    setFilters({ ...filters, topics: newValue });
   };
 
-  const handleYearChange = (year: number) => {
-    const newYears = filters.years.includes(year)
-      ? filters.years.filter(y => y !== year)
-      : [...filters.years, year];
-    
-    setFilters({ ...filters, years: newYears });
+  const handleYearChange = (
+    event: React.SyntheticEvent,
+    newValue: number[]
+  ) => {
+    setFilters({ ...filters, years: newValue });
   };
 
-  const handleAuthorChange = (author: string) => {
-    const newAuthors = filters.authors.includes(author)
-      ? filters.authors.filter(a => a !== author)
-      : [...filters.authors, author];
-    
-    setFilters({ ...filters, authors: newAuthors });
+  const handleAuthorChange = (
+    event: React.SyntheticEvent,
+    newValue: string[]
+  ) => {
+    setFilters({ ...filters, authors: newValue });
   };
 
-  const handlePaperTypeChange = (paperType: string) => {
-    const newPaperTypes = filters.paperTypes.includes(paperType)
-      ? filters.paperTypes.filter(pt => pt !== paperType)
-      : [...filters.paperTypes, paperType];
-    
-    setFilters({ ...filters, paperTypes: newPaperTypes });
+  const handlePaperTypeChange = (
+    event: React.SyntheticEvent,
+    newValue: string[]
+  ) => {
+    setFilters({ ...filters, paperTypes: newValue });
   };
 
   const clearAllFilters = () => {
@@ -59,13 +64,25 @@ const FilterPanel: React.FC = () => {
       topics: [],
       years: [],
       authors: [],
-      paperTypes: []
+      paperTypes: [],
     });
   };
 
   return (
-    <Box sx={{ width: '300px', p: 2, bgcolor: 'background.paper', borderRadius: 1 }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+    <Box
+      sx={{
+        width: "300px",
+        p: 2,
+        bgcolor: "background.paper",
+        borderRadius: 1,
+      }}
+    >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={2}
+      >
         <Typography variant="h6">Filters</Typography>
         <Button size="small" onClick={clearAllFilters}>
           Clear All
@@ -84,105 +101,114 @@ const FilterPanel: React.FC = () => {
       )}
 
       {/* Topics Filter */}
-      <Accordion defaultExpanded>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Topics</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box display="flex" flexDirection="column" gap={1}>
-            {availableTopics.map(topic => (
-              <FormControlLabel
-                key={topic}
-                control={
-                  <Checkbox
-                    checked={filters.topics.includes(topic)}
-                    onChange={() => handleTopicChange(topic)}
-                    size="small"
-                  />
-                }
-                label={topic}
-              />
-            ))}
-          </Box>
-        </AccordionDetails>
-      </Accordion>
+      <Autocomplete
+        multiple
+        options={availableTopics}
+        value={filters.topics}
+        onChange={handleTopicChange}
+        disableCloseOnSelect
+        renderOption={(props, option, { selected }) => (
+          <li {...props} key={option}>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              checked={selected}
+            />
+            {option}
+          </li>
+        )}
+        renderInput={(params) => (
+          <TextField {...params} label="Topics" placeholder="Select topics" />
+        )}
+        sx={{ mb: 2 }}
+      />
 
       {/* Years Filter */}
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Years</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box display="flex" flexDirection="column" gap={1}>
-            {availableYears.map(year => (
-              <FormControlLabel
-                key={year}
-                control={
-                  <Checkbox
-                    checked={filters.years.includes(year)}
-                    onChange={() => handleYearChange(year)}
-                    size="small"
-                  />
-                }
-                label={year.toString()}
-              />
-            ))}
-          </Box>
-        </AccordionDetails>
-      </Accordion>
+      <Autocomplete
+        multiple
+        options={availableYears}
+        value={filters.years}
+        onChange={handleYearChange}
+        disableCloseOnSelect
+        getOptionLabel={(option) => option.toString()}
+        renderOption={(props, option, { selected }) => (
+          <li {...props}  key={option}>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+            {option}
+          </li>
+        )}
+        renderInput={(params) => (
+          <TextField {...params} label="Years" placeholder="Select years" />
+        )}
+        sx={{ mb: 2 }}
+      />
 
       {/* Authors Filter */}
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Authors</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box display="flex" flexDirection="column" gap={1}>
-            {availableAuthors.map(author => (
-              <FormControlLabel
-                key={author}
-                control={
-                  <Checkbox
-                    checked={filters.authors.includes(author)}
-                    onChange={() => handleAuthorChange(author)}
-                    size="small"
-                  />
-                }
-                label={author}
-              />
-            ))}
-          </Box>
-        </AccordionDetails>
-      </Accordion>
+      <Autocomplete
+        multiple
+        options={availableAuthors}
+        value={filters.authors}
+        onChange={handleAuthorChange}
+        disableCloseOnSelect
+        renderOption={(props, option, { selected }) => (
+          <li {...props} key={option}>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+            {option}
+          </li>
+        )}
+        renderInput={(params) => (
+          <TextField {...params} label="Authors" placeholder="Select authors" />
+        )}
+        sx={{ mb: 2 }}
+      />
 
       {/* Paper Types Filter */}
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Paper Types</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Box display="flex" flexDirection="column" gap={1}>
-            {availablePaperTypes.map(type => (
-              <FormControlLabel
-                key={type}
-                control={
-                  <Checkbox
-                    checked={filters.paperTypes.includes(type)}
-                    onChange={() => handlePaperTypeChange(type)}
-                    size="small"
-                  />
-                }
-                label={type.charAt(0).toUpperCase() + type.slice(1)}
-              />
-            ))}
-          </Box>
-        </AccordionDetails>
-      </Accordion>
+      <Autocomplete
+        multiple
+        options={availablePaperTypes}
+        value={filters.paperTypes}
+        onChange={handlePaperTypeChange}
+        disableCloseOnSelect
+        getOptionLabel={(option) =>
+          option.charAt(0).toUpperCase() + option.slice(1)
+        }
+        renderOption={(props, option, { selected }) => (
+          <li {...props} key={option}>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+            {option.charAt(0).toUpperCase() + option.slice(1)}
+          </li>
+        )}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Paper Types"
+            placeholder="Select paper types"
+          />
+        )}
+        sx={{ mb: 2 }}
+      />
+
+      <Divider sx={{ my: 2 }} />
 
       {/* Active Filters */}
       {(filters.topics.length > 0 || filters.years.length > 0 || 
         filters.authors.length > 0 || filters.paperTypes.length > 0) && (
-        <Box mt={2}>
+        <Box>
           <Typography variant="subtitle2" gutterBottom>
             Active Filters:
           </Typography>
@@ -192,7 +218,9 @@ const FilterPanel: React.FC = () => {
                 key={topic}
                 label={topic}
                 size="small"
-                onDelete={() => handleTopicChange(topic)}
+                onDelete={() => {
+                  handleTopicChange({} as React.SyntheticEvent, filters.topics.filter(t => t !== topic));
+                }}
               />
             ))}
             {filters.years.map(year => (
@@ -200,7 +228,9 @@ const FilterPanel: React.FC = () => {
                 key={year}
                 label={year.toString()}
                 size="small"
-                onDelete={() => handleYearChange(year)}
+                onDelete={() => {
+                  handleYearChange({} as React.SyntheticEvent, filters.years.filter(y => y !== year));
+                }}
               />
             ))}
             {filters.authors.map(author => (
@@ -208,7 +238,9 @@ const FilterPanel: React.FC = () => {
                 key={author}
                 label={author}
                 size="small"
-                onDelete={() => handleAuthorChange(author)}
+                onDelete={() => {
+                  handleAuthorChange({} as React.SyntheticEvent, filters.authors.filter(a => a !== author));
+                }}
               />
             ))}
             {filters.paperTypes.map(type => (
@@ -216,7 +248,9 @@ const FilterPanel: React.FC = () => {
                 key={type}
                 label={type}
                 size="small"
-                onDelete={() => handlePaperTypeChange(type)}
+                onDelete={() => {
+                  handlePaperTypeChange({} as React.SyntheticEvent, filters.paperTypes.filter(t => t !== type));
+                }}
               />
             ))}
           </Box>
