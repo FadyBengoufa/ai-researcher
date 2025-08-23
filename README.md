@@ -65,6 +65,7 @@ https://airesearcherdev.netlify.app
   - `useSearch`: Manages search and filtering logic
   - `useAI`: Handles all Cohere API interactions
   - `useChat`: Manages chat conversation state and messaging
+  - `useDebounce`: Debounces the search query to prevent excessive API calls
 
 - **Component Architecture**:
   - `components/`: Reusable UI components (SearchBar, PaperCard, etc.)
@@ -79,18 +80,20 @@ https://airesearcherdev.netlify.app
   - Realistic publication years and venues
   - Meaningful topic tags and citation counts
 
-<!-- - **TypeScript Usage**: [How you leveraged TypeScript for type safety]
+- **TypeScript Usage**: Strict typing throughout the application
+  - Interfaces for all data structures (Paper, AIAnalysis, ChatMessage)
+  - Type-safe API calls and context consumption
 - **Performance Optimization**: [Any optimizations implemented]
 
 ## Time Breakdown
-- Setup & Planning: X hours
-- UI Development: X hours
-- API Integration: X hours
-- Testing & Polish: X hours
+- Setup & Planning: 2 hours
+- UI Development: 3 hours
+- API Integration: 1 hours
+- Testing & Polish: 2 hours
 
-- **Total**: X hours
+- **Total**: 8 hours
 
-## Challenges & Solutions
+<!-- ## Challenges & Solutions
 [Describe main challenges faced and how you solved them]
 
 ## Future Improvements
