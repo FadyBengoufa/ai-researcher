@@ -5,6 +5,8 @@ import PaperCard from "../components/PaperCard";
 import { useSearch } from "../contexts/SearchContext";
 import FilterPanel from "../components/FilterPanel";
 import Pagination from "../components/Pagination";
+import AnalysisActions from "../components/AnalysisActions";
+import AnalysisResults from "../components/AnalysisResults";
 
 const SearchPage: React.FC = () => {
   const { results, loading, error, totalPages } = useSearch();
@@ -23,12 +25,18 @@ const SearchPage: React.FC = () => {
 
       <Grid container gap={3} sx={{ width: "100%" }}>
         {/* Filters Panel */}
-        <Grid item md={3}>
+        <Grid item md={3} xs={12}>
           <FilterPanel />
         </Grid>
 
         {/* Results Panel */}
-        <Grid item md={9} sx={{ flexGrow: 1 }}>
+        <Grid item md={9} xs={12} sx={{ flexGrow: 1 }}>
+          {/* Analysis Actions */}
+          <AnalysisActions />
+
+          {/* Analysis Results */}
+          <AnalysisResults />
+
           {!loading && !error && results.length === 0 && (
             <Typography align="center" sx={{ width: "100%", mb: 2 }}>
               No results found. Try a different search term.

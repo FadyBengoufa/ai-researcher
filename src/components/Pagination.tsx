@@ -1,4 +1,3 @@
-// In src/components/Pagination.tsx
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { useSearch } from '../contexts/SearchContext';
