@@ -15,7 +15,7 @@ const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
 
   return (
     <Card sx={{ mb: 2, position: 'relative' }}>
-      <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+      <Box sx={{ position: 'absolute', top: 8, right: 0 }}>
         <FormControlLabel
           control={
             <Checkbox

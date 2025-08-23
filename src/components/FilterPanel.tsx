@@ -71,7 +71,6 @@ const FilterPanel: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "300px",
         p: 2,
         bgcolor: "background.paper",
         borderRadius: 1,

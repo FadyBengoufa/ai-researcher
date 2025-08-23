@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Tooltip, IconButton } from "@mui/material";
+import { Typography, Box, Tooltip, IconButton, Grid } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import PaperCard from "../components/PaperCard";
 import { useSearch } from "../contexts/SearchContext";
@@ -10,7 +10,6 @@ import AnalysisResults from "../components/AnalysisResults";
 import ChatWindow from "../components/ChatWindow";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { useChatContext } from "../components/ChatContext";
-import Grid from '@mui/material/GridLegacy';
 
 const SearchPage: React.FC = () => {
   const { results, loading, error, totalPages } = useSearch();
@@ -26,10 +25,11 @@ const SearchPage: React.FC = () => {
          <Tooltip title="Open Research Assistant">
           <IconButton
             onClick={openChat}
+            size="large"
             sx={{
               position: 'fixed',
-              bottom: 16,
-              right: 16,
+              bottom: 20,
+              right: 20,
               bgcolor: 'primary.main',
               color: 'white',
               zIndex: 999,
@@ -53,14 +53,14 @@ const SearchPage: React.FC = () => {
           <SearchBar />
         </Box>
 
-        <Grid container spacing={3} sx={{ width: "100%" }}>
+        <Grid container spacing={4} sx={{ width: "100%" }}>
           {/* Filters Panel */}
-          <Grid item md={3} xs={12}>
+          <Grid size={{ xs: 12, md: 3 }}>
             <FilterPanel />
           </Grid>
 
           {/* Results Panel */}
-          <Grid item md={9} xs={12} sx={{ flexGrow: 1 }}>
+          <Grid size={{ xs: 12, md: 9 }}>
             {/* Analysis Actions */}
             <AnalysisActions />
 
