@@ -22,7 +22,7 @@ https://airesearcherdev.netlify.app
 
 ## Features Implemented
 - [x] Mock research paper search with filters
-  - Real-time search across titles, abstracts, and authors
+  - Real-time search across titles
   - Advanced filtering by topics, years, authors, and paper types
 
 - [x] AI-powered paper analysis
@@ -36,8 +36,13 @@ https://airesearcherdev.netlify.app
   - Context-aware conversations about selected papers
   - Message history with timestamps
   - Copy and delete message functionality
+  - Clear the conversation
 
-- [ ] Additional bonus features (data visualizations, etc.)
+## Features Not Yet Implemented
+- Search history/recent queries (localStorage)
+- View toggle works smoothly between grid/list
+- Sorting feature
+- Additional bonus features (data visualizations, etc.)
 
 ## Mock Data
 - **Dataset Size**: 10 research papers across 4 main topics
@@ -85,16 +90,26 @@ https://airesearcherdev.netlify.app
   - Type-safe API calls and context consumption
 - **Performance Optimization**: [Any optimizations implemented]
 
+
 ## Time Breakdown
 - Setup & Planning: 2 hours
 - UI Development: 3 hours
-- API Integration: 1 hours
+- API Integration: 2 hours
 - Testing & Polish: 2 hours
+- Documenting & Improving responsivity: 2 hours
 
-- **Total**: 8 hours
+- **Total**: Around 12 hours
 
-<!-- ## Challenges & Solutions
-[Describe main challenges faced and how you solved them]
+## Challenges & Solutions
+The main challenges I faced are : 
+- Typing correctly my states and interfaces so that Typescript stops yelling in my code editor.
+- Implementing React Context correctly
+- Responsivity and building a user friendly app without having a design just through intuition and based from what I seen before
+
 
 ## Future Improvements
-[What you would add/improve with more time] -->
+
+- Implementing the features I haven't finished yet
+- Use an Academic APIs for Real Research Papers
+- Optimize the application by profiling the slow components and monitoring the memory tab
+- Refactor the code using Enums for example
