@@ -1,14 +1,32 @@
 import React from 'react';
-import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
+import { Card, CardContent, Typography, Box, Chip, FormControlLabel, Checkbox } from '@mui/material';
 import { type Paper } from '../types/paper';
+import { useSearch } from '../contexts/SearchContext';
 
 interface PaperCardProps {
   paper: Paper;
 }
 
 const PaperCard: React.FC<PaperCardProps> = ({ paper }) => {
+
+  const { selectedPapers, togglePaperSelection } = useSearch();
+
+  const isSelected = selectedPapers.includes(paper.id);
+
   return (
-    <Card sx={{ mb: 2 }}>
+    <Card sx={{ mb: 2, position: 'relative' }}>
+      <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={isSelected}
+              onChange={() => togglePaperSelection(paper.id)}
+              sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+            />
+          }
+          label=""
+        />
+      </Box>
       <CardContent>
         <Typography variant="h6" component="h2" gutterBottom>
           {paper.title}
