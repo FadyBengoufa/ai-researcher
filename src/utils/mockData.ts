@@ -142,3 +142,11 @@ export const getAvailablePaperTypes = (): string[] => {
   const allTypes = mockPapers.map(paper => paper.paperType);
   return Array.from(new Set(allTypes));
 };
+
+export const getPapersByIds = (paperIds: string[], allPapers: Paper[] = mockPapers): Paper[] => {
+  return allPapers.filter(paper => paperIds.includes(paper.id));
+};
+
+export const getPaperById = (paperId: string, allPapers: Paper[] = mockPapers): Paper | undefined => {
+  return allPapers.find(paper => paper.id === paperId);
+};

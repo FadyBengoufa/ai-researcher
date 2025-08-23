@@ -4,6 +4,7 @@ import { lightTheme } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { SearchProvider } from "./contexts/SearchContext";
 import { AIProvider } from "./contexts/AIContext";
+import { ChatProvider } from "./components/ChatContext";
 
 const App: React.FC = () => {
   return (
@@ -11,7 +12,9 @@ const App: React.FC = () => {
       <CssBaseline />
       <SearchProvider>
         <AIProvider>
-          <SearchPage />
+          <ChatProvider>
+            <SearchPage />
+          </ChatProvider>
         </AIProvider>
       </SearchProvider>
     </ThemeProvider>
