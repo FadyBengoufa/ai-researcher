@@ -116,7 +116,7 @@ const AnalysisActions: React.FC = () => {
           : `${selectedCount} paper(s) selected`}
       </Typography>
 
-      <ButtonGroup variant="outlined" fullWidth disabled={loading}>
+      <ButtonGroup variant="outlined" fullWidth disabled={loading} sx={{ display: 'flex', flexWrap: 'wrap' }}>
         <Tooltip title="Summarize selected paper">
           <span>
             <Button

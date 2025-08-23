@@ -17,7 +17,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <>
-      <Grid container sx={{ m: 8, justifyContent: "center" }}>
+      <Grid container sx={{ m: { xs: 3, md: 8 }, justifyContent: "center" }}>
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           AI Research Explorer
         </Typography>
