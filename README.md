@@ -1,69 +1,97 @@
-# React + TypeScript + Vite
+# AI Research Explorer - By Fady Ayoub Bengoufa
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Demo
 
-Currently, two official plugins are available:
+https://airesearcherdev.netlify.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup Instructions
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Configure environment variables (see .env.example)
+4. Start development server: `npm run dev`
 
-## Expanding the ESLint configuration
+## API Configuration
+- AI Provider: Cohere API (v2 Chat API)
+- Create Account: Visit [dashboard.cohere.ai](http://dashboard.cohere.ai)
+- API Key Setup:
+  1. Sign up for a Cohere account
+  2. Navigate to API Keys section
+  3. Generate a new API key
+  4. Add it to your `.env` file as `VITE_COHERE_API_KEY`
+- Model Used: `command-a-03-2025` (modern chat-optimized model)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features Implemented
+- [x] Mock research paper search with filters
+  - Real-time search across titles, abstracts, and authors
+  - Advanced filtering by topics, years, authors, and paper types
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [x] AI-powered paper analysis
+  - Paper summarization with Cohere API
+  - Key topics extraction
+  - Comparative analysis of multiple papers
+  - Research trend insights
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- [x] AI-powered chatbot
+  - Floating chat window interface
+  - Context-aware conversations about selected papers
+  - Message history with timestamps
+  - Copy and delete message functionality
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [ ] Additional bonus features (data visualizations, etc.)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Mock Data
+- **Dataset Size**: 10 research papers across 4 main topics
+- **Data Generation**: Manually created realistic academic paper data
+- **Topics Covered**:
+  - AI/ML (NLP, Transformer Networks, Computer Vision)
+  - Climate Change and Sustainability
+  - Blockchain and Financial Technology
+  - Quantum Computing and Advanced Technologies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Technical Decisions
+- **State Management**:
+  - Used React Context API for global state management
+  - SearchContext for search results, filters, and selected papers
+  - AIContext for AI analysis results
+  - ChatContext for chat messages and window state
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **UI Library**: 
+  - Material-UI with custom theming
+  - Responsive grid system for mobile-friendly layout
+
+- **AI API**: Cohere v2 Chat API, Chosen for generous free tier and excellent documentation
+
+- **Custom Hooks**:
+  - `useSearch`: Manages search and filtering logic
+  - `useAI`: Handles all Cohere API interactions
+  - `useChat`: Manages chat conversation state and messaging
+
+- **Component Architecture**:
+  - `components/`: Reusable UI components (SearchBar, PaperCard, etc.)
+  - `pages/`: Page-level components (SearchPage)
+  - `contexts/`: React Context providers
+  - `hooks/`: Custom React hooks
+  - `utils/`: Helper functions and mock data
+
+- **Mock Data Strategy**: Created realistic academic papers with varied:
+  - Titles and abstracts that sound like real research
+  - Diverse author names and institutions
+  - Realistic publication years and venues
+  - Meaningful topic tags and citation counts
+
+<!-- - **TypeScript Usage**: [How you leveraged TypeScript for type safety]
+- **Performance Optimization**: [Any optimizations implemented]
+
+## Time Breakdown
+- Setup & Planning: X hours
+- UI Development: X hours
+- API Integration: X hours
+- Testing & Polish: X hours
+
+- **Total**: X hours
+
+## Challenges & Solutions
+[Describe main challenges faced and how you solved them]
+
+## Future Improvements
+[What you would add/improve with more time] -->
