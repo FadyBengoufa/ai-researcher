@@ -32,28 +32,28 @@ const FilterPanel: React.FC = () => {
   const availablePaperTypes = getAvailablePaperTypes();
 
   const handleTopicChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     newValue: string[]
   ) => {
     setFilters({ ...filters, topics: newValue });
   };
 
   const handleYearChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     newValue: number[]
   ) => {
     setFilters({ ...filters, years: newValue });
   };
 
   const handleAuthorChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     newValue: string[]
   ) => {
     setFilters({ ...filters, authors: newValue });
   };
 
   const handlePaperTypeChange = (
-    event: React.SyntheticEvent,
+    _event: React.SyntheticEvent,
     newValue: string[]
   ) => {
     setFilters({ ...filters, paperTypes: newValue });

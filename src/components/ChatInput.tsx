@@ -5,7 +5,6 @@ import {
   IconButton,
   Tooltip,
   CircularProgress,
-  Typography
 } from '@mui/material';
 import {
   Send,
@@ -149,12 +148,12 @@ const ChatInput: React.FC<ChatInputProps> = ({ disabled = false }) => {
           </Tooltip>
         </Box>
 
-        {selectedCount > 0 && (
+        {/* {selectedCount > 0 && (
           <Typography variant="caption" color="textSecondary" sx={{ mt: 1, display: 'block' }}>
             Chatting about {selectedCount} paper(s): {selectedPapers.slice(0, 3).map(p => p.title).join(', ')}
             {selectedCount > 3 && '...'}
           </Typography>
-        )}
+        )} */}
       </form>
     </Box>
   );

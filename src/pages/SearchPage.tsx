@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Grid, Tooltip, IconButton } from "@mui/material";
+import { Typography, Box, Tooltip, IconButton } from "@mui/material";
 import SearchBar from "../components/SearchBar";
 import PaperCard from "../components/PaperCard";
 import { useSearch } from "../contexts/SearchContext";
@@ -10,6 +10,7 @@ import AnalysisResults from "../components/AnalysisResults";
 import ChatWindow from "../components/ChatWindow";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { useChatContext } from "../components/ChatContext";
+import Grid from '@mui/material/GridLegacy';
 
 const SearchPage: React.FC = () => {
   const { results, loading, error, totalPages } = useSearch();
@@ -17,7 +18,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <>
-      <Grid container sx={{ mx: 16, justifyContent: "center" }}>
+      <Grid container sx={{ m: 8, justifyContent: "center" }}>
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           AI Research Explorer
         </Typography>
@@ -52,7 +53,7 @@ const SearchPage: React.FC = () => {
           <SearchBar />
         </Box>
 
-        <Grid container gap={3} sx={{ width: "100%" }}>
+        <Grid container spacing={3} sx={{ width: "100%" }}>
           {/* Filters Panel */}
           <Grid item md={3} xs={12}>
             <FilterPanel />

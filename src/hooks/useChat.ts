@@ -58,7 +58,7 @@ export const useChat = (): UseChatReturn => {
         const assistantMessage: ChatMessage = {
           id: (Date.now() + 1).toString(),
           role: "assistant",
-          content: response,
+          content: response || "I'm sorry, I didn't understand that.",
           timestamp: new Date(),
           paperContext: papers.map((p) => p.id),
         };

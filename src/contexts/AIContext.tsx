@@ -10,8 +10,8 @@ interface AIProviderProps {
 export const AIProvider: React.FC<AIProviderProps> = ({ children }) => {
   const [analyses, setAnalyses] = useState<AIAnalysis[]>([]);
   const [messages, setMessages] = useState<AIMessage[]>([]);
-  const [chatLoading, setChatLoading] = useState(false);
-  const [chatError, setChatError] = useState<string | null>(null);
+  const [chatLoading] = useState(false);
+  const [chatError] = useState<string | null>(null);
 
   const addAnalysis = (analysis: Omit<AIAnalysis, 'timestamp'>) => {
     const newAnalysis: AIAnalysis = {
